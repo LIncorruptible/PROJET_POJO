@@ -58,6 +58,13 @@ public class Helper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteBook(Book book) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete("books", "author=? AND title=? AND publisher=? AND description=? AND publishingDate=? AND price=?", new String[]{book.getAuthor(), book.getTitle(), book.getPublisher(), book.getDescription(), String.valueOf(book.getPublishingDate()), String.valueOf(book.getPrice())});
+        db.close();
+    }
+
     public int nbBooksOnBDD() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -85,6 +92,19 @@ public class Helper extends SQLiteOpenHelper {
         db.close();
 
         return book;
+    }
+
+    public int getBookId(Book book) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM books WHERE author=? AND title=? AND publisher=? AND description=? AND publishingDate=? AND price=?", new String[]{book.getAuthor(), book.getTitle(), book.getPublisher(), book.getDescription(), String.valueOf(book.getPublishingDate()), String.valueOf(book.getPrice())});
+        int id = -1;
+        if (cursor.moveToFirst()) {
+            id = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+
+        return id;
     }
 
     public List<Book> getAllBooks() {

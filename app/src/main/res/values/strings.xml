@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">PROJET_POJO</string>
+    <string name="open_library">Accéder à la bibliothèque</string>
+
+    <string name="library">Bibliothèque</string>
+    <string name="new_book">Nouveau livre</string>
+    <string name="modify_book">Modifier un livre</string>
+    <string name="delete_book">Supprimer un livre</string>
+
+    <string name="author">Auteur</string>
+    <string name="title">Titre</string>
+    <string name="publisher">Editeur</string>
+    <string name="description">Description</string>
+    <string name="publishing_date">Date de publication</string>
+    <string name="price">Prix €</string>
+    <string name="save">Sauvegarder</string>
+    <string name="cancel">Annuler</string>
 </resources>

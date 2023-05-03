@@ -12,6 +12,12 @@
         android:theme="@style/Theme.PROJET_POJO"
         tools:targetApi="31">
         <activity
+            android:name=".BookActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LibraryActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.HomeActivity"
             android:exported="true">
             <intent-filter>

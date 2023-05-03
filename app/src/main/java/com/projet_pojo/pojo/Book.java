@@ -1,5 +1,7 @@
 package com.projet_pojo.pojo;
 
+import android.os.Parcelable;
+
 import java.util.Date;
 
 public class Book {
