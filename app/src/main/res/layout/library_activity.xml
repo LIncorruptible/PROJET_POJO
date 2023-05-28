@@ -26,6 +26,7 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:gravity="center"
+            android:padding="@dimen/margin"
             android:text="@string/library"
             android:textColor="@color/black"
             android:textSize="28sp"
@@ -38,12 +39,15 @@
             android:layout_margin="@dimen/margin"
             android:layout_weight="1"
             android:cacheColorHint="@color/light_brown"
-            android:listSelector="@color/brown" />
+            android:listSelector="@color/brown">
+
+        </ListView>
 
         <LinearLayout
             android:id="@+id/conteneur_boutons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
             android:orientation="horizontal">
 
             <Button

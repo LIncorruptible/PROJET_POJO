@@ -13,12 +13,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Classe permettant les intéractions avec la base de données SQLite
+ */
 public class Helper extends SQLiteOpenHelper {
 
+    /**
+     * Constructeur
+     * @param context : contexte de l'application
+     */
     public Helper(@Nullable Context context) {
         super(context, "BDDAppli", null, 1);
     }
 
+    /**
+     * Création de la base de données
+     * @param db : base de données
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE books " +
@@ -31,12 +42,22 @@ public class Helper extends SQLiteOpenHelper {
                 "price REAL NOT NULL)");
     }
 
+    /**
+     * Mise à jour de la base de données
+     * @param db : base de données
+     * @param i : ancienne version
+     * @param i1 : nouvelle version
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS books");
         onCreate(db);
     }
 
+    /**
+     * Méthode d'insertion d'un livre dans la base de données
+     * @param book : livre à insérer
+     */
     public void insertBook(Book book) {
         SQLiteDatabase db = null;
         try {
@@ -58,6 +79,10 @@ public class Helper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Méthode de suppression d'un livre de la base de données
+     * @param id : id du livre à supprimer
+     */
     public void deleteBook(int id) {
         SQLiteDatabase db = null;
         try {
@@ -70,6 +95,10 @@ public class Helper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Méthode de suppression d'un livre de la base de données
+     * @param book : livre à supprimer
+     */
     public void deleteBook(Book book) {
         SQLiteDatabase db = null;
         try {
@@ -82,7 +111,11 @@ public class Helper extends SQLiteOpenHelper {
         }
     }
 
-
+    /**
+     * Méthode de mise à jour d'un livre de la base de données
+     * @param oldBook : ancien livre
+     * @param newBook : nouveau livre
+     */
     public void updateBook(Book oldBook, Book newBook) {
         SQLiteDatabase db = null;
         try {
@@ -104,35 +137,11 @@ public class Helper extends SQLiteOpenHelper {
         }
     }
 
-    public int nbBooksOnBDD() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM books", null);
-        int nbBooks = cursor.getCount();
-        cursor.close();
-        db.close();
-
-        return nbBooks;
-    }
-
-    public Book getBook(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM books WHERE _id=?", new String[]{String.valueOf(id)});
-        Book book = new Book();
-        if (cursor.moveToFirst()) {
-            book.setAuthor(cursor.getString(1));
-            book.setTitle(cursor.getString(2));
-            book.setPublisher(cursor.getString(3));
-            book.setDescription(cursor.getString(4));
-            book.setPublishingDate(new Date(cursor.getString(5)));
-            book.setPrice(cursor.getDouble(6));
-        }
-        cursor.close();
-        db.close();
-
-        return book;
-    }
-
+    /**
+     * Méthode de récupération de l'id d'un livre
+     * @param book : livre dont on veut l'id
+     * @return
+     */
     public int getBookId(Book book) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM books WHERE author=? AND title=? AND publisher=? AND description=? AND publishingDate=? AND price=?", new String[]{book.getAuthor(), book.getTitle(), book.getPublisher(), book.getDescription(), String.valueOf(book.getPublishingDate()), String.valueOf(book.getPrice())});
@@ -145,6 +154,10 @@ public class Helper extends SQLiteOpenHelper {
         return id;
     }
 
+    /**
+     * Méthode de récupération de tous les livres de la base de données
+     * @return : liste des livres
+     */
     public List<Book> getAllBooks() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM books", null);
@@ -166,6 +179,11 @@ public class Helper extends SQLiteOpenHelper {
         return books;
     }
 
+    /**
+     * Méthode de vérification de l'existence d'un livre dans la base de données
+     * @param book : livre à vérifier
+     * @return
+     */
     public boolean isBookExistingInBDD(Book book) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM books WHERE author=? AND title=? AND publisher=? AND description=? AND publishingDate=? AND price=?", new String[]{book.getAuthor(), book.getTitle(), book.getPublisher(), book.getDescription(), String.valueOf(book.getPublishingDate()), String.valueOf(book.getPrice())});

@@ -8,10 +8,17 @@ import android.widget.Button;
 
 import com.projet_pojo.R;
 
+/**
+ * Activité d'accueil
+ */
 public class HomeActivity extends AppCompatActivity {
 
     Button openLibraryButton;
 
+    /**
+     * Méthode appelée à la création de l'activité
+     * @param savedInstanceState : état de l'activité
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +28,10 @@ public class HomeActivity extends AppCompatActivity {
         onClickOpenLibrary(openLibraryButton);
     }
 
+    /**
+     * Méthode permettant d'ouvrir l'activité LibraryActivity
+     * @param button : bouton permettant d'ouvrir l'activité LibraryActivity
+     */
     public void onClickOpenLibrary(Button button) {
         button.setOnClickListener(v -> {
             Intent intent = new Intent(this, LibraryActivity.class);

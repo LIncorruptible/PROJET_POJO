@@ -15,14 +15,32 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Classe représentant une liste de livres sous forme d'adaptateur
+ */
 public class BookItemAdapter extends BaseAdapter {
 
-    // Attributs
+    /**
+     * Contexte de l'application
+     */
     private Context context;
+
+    /**
+     * Liste des livres
+     */
     private List<Book> books;
+
+    /**
+     * Permet de créer des vues à partir d'un fichier XML
+     */
     private LayoutInflater inflater;
 
-    // Constructeur
+
+    /**
+     * Constructeur
+     * @param context : contexte de l'application
+     * @param booksItemList : liste des livres
+     */
     public BookItemAdapter(Context context, List<Book> booksItemList) {
         this.context = context;
         this.books = booksItemList;
@@ -31,46 +49,93 @@ public class BookItemAdapter extends BaseAdapter {
 
     // Getters & Setters
 
+    /**
+     * Récupère le contexte de l'application
+     * @return
+     */
     public Context getContext() {
         return context;
     }
 
+    /**
+     * Modifie le contexte de l'application
+     * @param context : contexte de l'application
+     */
     public void setContext(Context context) {
         this.context = context;
     }
 
+    /**
+     * Récupère la liste des livres
+     * @return
+     */
     public List<Book> getBooksItemList() {
         return books;
     }
 
+    /**
+     * Modifie la liste des livres
+     * @param booksItemList : liste des livres
+     */
     public void setBooksItemList(List<Book> booksItemList) {
         this.books = booksItemList;
     }
 
+    /**
+     * Récupère le LayoutInflater
+     * @return
+     */
     public LayoutInflater getInflater() {
         return inflater;
     }
 
+    /**
+     * Modifie le LayoutInflater
+     * @param inflater : LayoutInflater
+     */
     public void setInflater(LayoutInflater inflater) {
         this.inflater = inflater;
     }
 
+
     // Méthodes
+
+    /**
+     * Récupère le nombre de livres
+     * @return
+     */
     @Override
     public int getCount() {
         return books.size();
     }
 
+    /**
+     * Récupère un livre
+     * @param i : index du livre
+     * @return
+     */
     @Override
     public Book getItem(int i) {
         return books.get(i);
     }
 
+    /**
+     * Récupère l'identifiant d'un livre
+     * @param i : index du livre
+     * @return
+     */
     @Override
     public long getItemId(int i) {
         return 0;
     }
 
+    /**
+     * Récupère la vue d'un livre
+     * @param i : index du livre
+     * @param view : vue
+     * @param viewGroup : vue
+     * @return
+     */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.book_item_adapter, null);
@@ -107,6 +172,5 @@ public class BookItemAdapter extends BaseAdapter {
 
         return view;
     }
-
 
 }

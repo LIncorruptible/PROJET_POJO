@@ -18,6 +18,9 @@ import com.projet_pojo.pojo.Helper;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activité permettant de gérer la bibliothèque de livres (ajout, modification, suppression)
+ */
 public class LibraryActivity extends AppCompatActivity {
 
     Helper helper;
@@ -26,6 +29,10 @@ public class LibraryActivity extends AppCompatActivity {
 
     int selectedBookId = -1;
 
+    /**
+     * Méthode appelée à la création de l'activité
+     * @param savedInstanceState : état de l'activité
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +67,9 @@ public class LibraryActivity extends AppCompatActivity {
         onClickDeleteBook(deleteBookButton);
     }
 
+    /**
+     * Méthode appelée lors de l'appui sur le bouton retour
+     */
     @Override
     public void onBackPressed() {
         // Retour à la bibliothèque
@@ -68,6 +78,9 @@ public class LibraryActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Méthode d'intialisation des champs
+     */
     public void initFields() {
         newBookButton = findViewById(R.id.new_book);
         modifyBookButton = findViewById(R.id.modify_book);
@@ -75,6 +88,9 @@ public class LibraryActivity extends AppCompatActivity {
         booksListView = findViewById(R.id.library_list);
     }
 
+    /**
+     * Méthode de rafraichissement de la bibliothèque
+     */
     public void refreshLibrary() {
 
         // Récupération des livres
@@ -94,12 +110,20 @@ public class LibraryActivity extends AppCompatActivity {
         booksListView.setAdapter(bookItemAdapter);
     }
 
+    /**
+     * Méthode d'écoute du clic sur le bouton de suppression d'un livre
+     * @param listView : liste des livres
+     */
     public void onClickItemSelect(ListView listView) {
         listView.setOnItemClickListener((parent, view, position, id) -> {
             selectedBookId = position;
         });
     }
 
+    /**
+     * Méthode d'écoute du clic sur le bouton de création d'un livre
+     * @param button : bouton de création d'un livre
+     */
     public void onClickNewBook(Button button) {
         button.setOnClickListener(v -> {
             Intent intent = new Intent(this, BookActivity.class);
@@ -108,6 +132,10 @@ public class LibraryActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Méthode d'écoute du clic sur le bouton de modification d'un livre
+     * @param button : bouton de modification d'un livre
+     */
     public void onClickModifyBook(Button button) {
         button.setOnClickListener(v-> {
             // Si la bibliothèque est vide
@@ -138,6 +166,10 @@ public class LibraryActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Méthode d'écoute du clic sur le bouton de suppression d'un livre
+     * @param button : bouton de suppression d'un livre
+     */
     public void onClickDeleteBook(Button button) {
         button.setOnClickListener(v -> {
 
@@ -161,7 +193,6 @@ public class LibraryActivity extends AppCompatActivity {
                     Toast.makeText(this, "Livre supprimé.", Toast.LENGTH_SHORT).show();
                 }
             }
-
         });
     }
 }

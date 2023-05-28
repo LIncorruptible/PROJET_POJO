@@ -16,12 +16,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Activité permettant d'ajouter ou de modifier un livre via un formulaire
+ */
 public class BookActivity extends AppCompatActivity {
 
     Helper helper;
     EditText authorEditText, titleEditText, publisherEditText, descriptionEditText, publishingDateEditText, priceEditText;
     Button saveButton, cancelButton;
 
+    /**
+     * Méthode appelée à la création de l'activité
+     * @param savedInstanceState : état de l'activité
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +61,18 @@ public class BookActivity extends AppCompatActivity {
         onClickCancel(cancelButton);
     }
 
+    /**
+     * Méthode appelée lors de l'appui sur le bouton retour
+     */
     @Override
     public void onBackPressed() {
         // Retour à la bibliothèque
         returnToLibrary();
     }
 
+    /**
+     * Méthode permettant d'initialiser les champs
+     */
     public void initFields() {
         authorEditText = findViewById(R.id.edit_author);
         titleEditText = findViewById(R.id.edit_title);
@@ -71,6 +84,10 @@ public class BookActivity extends AppCompatActivity {
         cancelButton = findViewById(R.id.cancel_btn);
     }
 
+    /**
+     * Méthode remplissant tous les champs avec les informations du livre
+     * @param book : livre
+     */
     private void placeInformations(Book book) {
         authorEditText.setText(book.getAuthor());
         titleEditText.setText(book.getTitle());
@@ -88,6 +105,10 @@ public class BookActivity extends AppCompatActivity {
         priceEditText.setText(String.valueOf(book.getPrice()));
     }
 
+    /**
+     * Méthode d'écoute du bouton "Annuler"
+     * @param button : bouton "Annuler"
+     */
     public void onClickCancel(Button button) {
         button.setOnClickListener(v -> {
             // Retour à la bibliothèque
@@ -95,6 +116,10 @@ public class BookActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Méthode d'écoute et action du bouton "Enregistrer"
+     * @param button : bouton "Enregistrer"
+     */
     public void onClickSave(Button button) {
 
         button.setOnClickListener(v -> {
@@ -122,6 +147,11 @@ public class BookActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Méthode d'écoute et action du bouton "Modifier"
+     * @param button : bouton "Modifier"
+     * @param oldBook : ancien livre qui va être modifié
+     */
     public void onClickModify(Button button, Book oldBook) {
         button.setOnClickListener(v -> {
             Book book = new Book();
@@ -149,12 +179,20 @@ public class BookActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Méthode permettant de retourner à l'activité LibraryActivity
+     */
     public void returnToLibrary() {
         Intent intent = new Intent(this, LibraryActivity.class);
         startActivity(intent);
         finish();
     }
 
+    /**
+     * Méthode permettant de convertir un EditText en Date
+     * @param editText : EditText Date à convertir
+     * @return Date : date convertie
+     */
     public Date convertEditTextToDate(EditText editText) {
         String str_date = editText.getText().toString();
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -165,6 +203,10 @@ public class BookActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Méthode permettant de vérifier si tous les champs sont remplis
+     * @return boolean : true si tous les champs sont remplis, false sinon
+     */
     public boolean allFieldsAreFilled() {
         return !authorEditText.getText().toString().isEmpty() &&
                 !titleEditText.getText().toString().isEmpty() &&
