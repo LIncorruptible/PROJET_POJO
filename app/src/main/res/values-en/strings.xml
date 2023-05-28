@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="open_library">Access to the library</string>
+    <string name="library">Library</string>
+    <string name="new_book">New book</string>
+    <string name="modify_book">Modify book</string>
+    <string name="delete_book">Delete book</string>
+    <string name="author">Author</string>
+    <string name="title">Title</string>
+    <string name="publisher">Publisher</string>
+    <string name="description">Description</string>
+    <string name="publishing_date">Publishing date</string>
+    <string name="price">Price €</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="empty_library">Empty library.</string>
+    <string name="no_selected_book">No book selected.</string>
+    <string name="book_deleted">Book deleted.</string>
+    <string name="existing_book">The book already exists!</string>
+    <string name="book_added">Book added.</string>
+    <string name="complete_all_fields">Please fill in all fields!</string>
+    <string name="book_modified">Book modified.</string>
+</resources>

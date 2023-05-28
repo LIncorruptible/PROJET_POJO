@@ -132,16 +132,16 @@ public class BookActivity extends AppCompatActivity {
             book.setPrice(Double.parseDouble(priceEditText.getText().toString()));
 
             if (helper.isBookExistingInBDD(book)) {
-                Toast.makeText(this, "Le livre existe déjà!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.existing_book, Toast.LENGTH_SHORT).show();
             } else {
                 if(allFieldsAreFilled()) {
                     // Ajout du livre dans la base de données
                     helper.insertBook(book);
-                    Toast.makeText(this, "Le livre a été ajouté.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.book_added, Toast.LENGTH_SHORT).show();
                     // Retour à la bibliothèque
                     returnToLibrary();
                 } else {
-                    Toast.makeText(this, "Veuillez remplir tous les champs!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.complete_all_fields, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -167,14 +167,14 @@ public class BookActivity extends AppCompatActivity {
                 // si sa modification ne crée pas de doublon
                 if (!helper.isBookExistingInBDD(book)) {
                     helper.updateBook(oldBook, book);
-                    Toast.makeText(this, "Le livre a été modifié.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.book_modified, Toast.LENGTH_SHORT).show();
                     // Retour à la bibliothèque
                     returnToLibrary();
                 } else {
-                    Toast.makeText(this, "Le livre existe déjà!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.existing_book, Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(this, "Veuillez remplir tous les champs!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.complete_all_fields, Toast.LENGTH_SHORT).show();
             }
         });
     }

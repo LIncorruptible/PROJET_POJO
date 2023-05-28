@@ -175,12 +175,12 @@ public class LibraryActivity extends AppCompatActivity {
 
             // Si la bibliothèque est vide
             if(helper.getAllBooks().isEmpty()) {
-                Toast.makeText(this, "La bibliothèque est vide.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.empty_library, Toast.LENGTH_SHORT).show();
             } else {
 
                 // Si aucun livre n'est sélectionné
                 if(selectedBookId == -1) {
-                    Toast.makeText(this, "Aucun livre sélectionné.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.no_selected_book, Toast.LENGTH_SHORT).show();
                 } else {
 
                     // Suppression du livre sélectionné
@@ -190,7 +190,7 @@ public class LibraryActivity extends AppCompatActivity {
                     refreshLibrary();
 
                     // Affichage d'un message de confirmation
-                    Toast.makeText(this, "Livre supprimé.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.book_deleted, Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PROJET_POJO</string>
+    <string name="app_name" translatable="false">PROJET_POJO</string>
     <string name="open_library">Accéder à la bibliothèque</string>
 
     <string name="library">Bibliothèque</string>
@@ -15,5 +15,12 @@
     <string name="price">Prix €</string>
     <string name="save">Sauvegarder</string>
     <string name="cancel">Annuler</string>
-    <string name="date">01/01/2000</string>
+    <string name="date" translatable="false">01/01/2000</string>
+    <string name="empty_library">La bibliothèque est vide.</string>
+    <string name="no_selected_book">Aucun livre sélectionné.</string>
+    <string name="book_deleted">Livre supprimé.</string>
+    <string name="existing_book">Le livre existe déjà!</string>
+    <string name="book_added">Le livre a été ajouté.</string>
+    <string name="complete_all_fields">Veuillez remplir tous les champs!</string>
+    <string name="book_modified">Le livre a été modifié.</string>
 </resources>
