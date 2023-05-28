@@ -20,7 +20,6 @@ L'application prend en charge trois langues : français, anglais et espagnol. La
 
 - Le dossier APK contient le fichier APK de l'application, prêt à être installé sur un appareil Android.
 - Le projet Android Studio complet se trouve dans le dossier PROJET_ANDROID_STUDIO. Il peut être ouvert et modifié dans Android Studio pour une personnalisation ou une extension supplémentaire.
-- Une archive nommée MAEL_RHUIN_PROJET contient l'ensemble du projet, y compris les fichiers sources, les ressources et les fichiers de configuration.
 
 N'hésitez pas à explorer le projet, à l'exécuter sur un appareil Android ou un émulateur, et à contribuer à son développement si vous le souhaitez.
  
