@@ -15,4 +15,5 @@
     <string name="price">Prix €</string>
     <string name="save">Sauvegarder</string>
     <string name="cancel">Annuler</string>
+    <string name="date">01/01/2000</string>
 </resources>

@@ -2,9 +2,10 @@ package com.projet_pojo.pojo;
 
 import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Book {
+public class Book implements Serializable {
 
     private String
             author,
@@ -26,7 +27,7 @@ public class Book {
     }
 
     public Book() {
-        this("undified", "undified", "undified", "undified", new Date(), 0.0);
+        this("", "", "", "", new Date(), 0.0);
     }
 
     public String getAuthor() {

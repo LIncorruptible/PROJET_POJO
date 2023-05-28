@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -37,32 +38,70 @@ public class Helper extends SQLiteOpenHelper {
     }
 
     public void insertBook(Book book) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
+        SQLiteDatabase db = null;
+        try {
+            db = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
 
-        cv.put("author", book.getAuthor());
-        cv.put("title", book.getTitle());
-        cv.put("publisher", book.getPublisher());
-        cv.put("description", book.getDescription());
-        cv.put("publishingDate", String.valueOf(book.getPublishingDate()));
-        cv.put("price", book.getPrice());
+            cv.put("author", book.getAuthor());
+            cv.put("title", book.getTitle());
+            cv.put("publisher", book.getPublisher());
+            cv.put("description", book.getDescription());
+            cv.put("publishingDate", String.valueOf(book.getPublishingDate()));
+            cv.put("price", book.getPrice());
 
-        db.insert("books", null, cv);
-        db.close();
+            db.insert("books", null, cv);
+        } finally {
+            if (db != null) {
+                db.close();
+            }
+        }
     }
 
     public void deleteBook(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        db.delete("books", "_id=?", new String[]{String.valueOf(id)});
-        db.close();
+        SQLiteDatabase db = null;
+        try {
+            db = this.getWritableDatabase();
+            db.delete("books", "_id=?", new String[]{String.valueOf(id)});
+        } finally {
+            if (db != null) {
+                db.close();
+            }
+        }
     }
 
     public void deleteBook(Book book) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = null;
+        try {
+            db = this.getWritableDatabase();
+            db.delete("books", "author=? AND title=? AND publisher=? AND description=? AND publishingDate=? AND price=?", new String[]{book.getAuthor(), book.getTitle(), book.getPublisher(), book.getDescription(), String.valueOf(book.getPublishingDate()), String.valueOf(book.getPrice())});
+        } finally {
+            if (db != null) {
+                db.close();
+            }
+        }
+    }
 
-        db.delete("books", "author=? AND title=? AND publisher=? AND description=? AND publishingDate=? AND price=?", new String[]{book.getAuthor(), book.getTitle(), book.getPublisher(), book.getDescription(), String.valueOf(book.getPublishingDate()), String.valueOf(book.getPrice())});
-        db.close();
+
+    public void updateBook(Book oldBook, Book newBook) {
+        SQLiteDatabase db = null;
+        try {
+            db = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+
+            cv.put("author", newBook.getAuthor());
+            cv.put("title", newBook.getTitle());
+            cv.put("publisher", newBook.getPublisher());
+            cv.put("description", newBook.getDescription());
+            cv.put("publishingDate", String.valueOf(newBook.getPublishingDate()));
+            cv.put("price", newBook.getPrice());
+
+            db.update("books", cv, "_id=?", new String[]{String.valueOf(getBookId(oldBook))});
+        } finally {
+            if (db != null) {
+                db.close();
+            }
+        }
     }
 
     public int nbBooksOnBDD() {
@@ -102,7 +141,6 @@ public class Helper extends SQLiteOpenHelper {
             id = cursor.getInt(0);
         }
         cursor.close();
-        db.close();
 
         return id;
     }
@@ -124,8 +162,19 @@ public class Helper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         cursor.close();
-        db.close();
 
         return books;
+    }
+
+    public boolean isBookExistingInBDD(Book book) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM books WHERE author=? AND title=? AND publisher=? AND description=? AND publishingDate=? AND price=?", new String[]{book.getAuthor(), book.getTitle(), book.getPublisher(), book.getDescription(), String.valueOf(book.getPublishingDate()), String.valueOf(book.getPrice())});
+        boolean isBookInBDD = false;
+        if (cursor.moveToFirst()) {
+            isBookInBDD = true;
+        }
+        cursor.close();
+
+        return isBookInBDD;
     }
 }

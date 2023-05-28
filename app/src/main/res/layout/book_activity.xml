@@ -21,28 +21,28 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/edit_author"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/author" />
-
-        <EditText
             android:id="@+id/edit_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/title" />
+            android:hint="@string/title"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edit_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/author"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/edit_publisher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/publisher" />
+            android:hint="@string/publisher"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/edit_description"
@@ -50,24 +50,24 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
-            android:inputType="textMultiLine"
-            tools:text="@string/description" />
+            android:hint="@string/description"
+            android:inputType="textMultiLine" />
 
         <EditText
             android:id="@+id/edit_publishing_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="date"
-            tools:text="@string/publishing_date" />
+            android:hint="@string/date"
+            android:inputType="date" />
 
         <EditText
             android:id="@+id/edit_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal"
-            tools:text="@string/price" />
+            android:hint="@string/price"
+            android:inputType="numberDecimal" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,14 +77,16 @@
             <Button
                 android:id="@+id/save_btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin"
                 android:layout_weight="1"
                 android:text="@string/save" />
 
             <Button
                 android:id="@+id/cancel_btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin"
                 android:layout_weight="1"
                 android:text="@string/cancel" />
 

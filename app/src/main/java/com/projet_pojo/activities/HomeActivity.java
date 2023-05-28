@@ -2,6 +2,7 @@ package com.projet_pojo.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,12 +22,12 @@ public class HomeActivity extends AppCompatActivity {
         onClickOpenLibrary(openLibraryButton);
     }
 
-    public void onClickOpenLibrary(View view) {
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setContentView(R.layout.library_activity);
-            }
+    public void onClickOpenLibrary(Button button) {
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LibraryActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
+
 }
