@@ -4,4 +4,9 @@
     <dimen name="margin">10dp</dimen>
     <dimen name="margin_small">5dp</dimen>
 
+    <dimen name="radius_big">20dp</dimen>
+    <dimen name="radius">15dp</dimen>
+    <dimen name="radius_medium">10dp</dimen>
+    <dimen name="radius_small">5dp</dimen>
+
 </resources>

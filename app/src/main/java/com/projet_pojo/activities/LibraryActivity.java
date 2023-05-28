@@ -60,6 +60,14 @@ public class LibraryActivity extends AppCompatActivity {
         onClickDeleteBook(deleteBookButton);
     }
 
+    @Override
+    public void onBackPressed() {
+        // Retour à la bibliothèque
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void initFields() {
         newBookButton = findViewById(R.id.new_book);
         modifyBookButton = findViewById(R.id.modify_book);

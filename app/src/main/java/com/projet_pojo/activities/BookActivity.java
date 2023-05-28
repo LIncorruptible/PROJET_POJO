@@ -54,6 +54,12 @@ public class BookActivity extends AppCompatActivity {
         onClickCancel(cancelButton);
     }
 
+    @Override
+    public void onBackPressed() {
+        // Retour à la bibliothèque
+        returnToLibrary();
+    }
+
     public void initFields() {
         authorEditText = findViewById(R.id.edit_author);
         titleEditText = findViewById(R.id.edit_title);
@@ -103,11 +109,15 @@ public class BookActivity extends AppCompatActivity {
             if (helper.isBookExistingInBDD(book)) {
                 Toast.makeText(this, "Le livre existe déjà!", Toast.LENGTH_SHORT).show();
             } else {
-                // Ajout du livre dans la base de données
-                helper.insertBook(book);
-                Toast.makeText(this, "Le livre a été ajouté.", Toast.LENGTH_SHORT).show();
-                // Retour à la bibliothèque
-                returnToLibrary();
+                if(allFieldsAreFilled()) {
+                    // Ajout du livre dans la base de données
+                    helper.insertBook(book);
+                    Toast.makeText(this, "Le livre a été ajouté.", Toast.LENGTH_SHORT).show();
+                    // Retour à la bibliothèque
+                    returnToLibrary();
+                } else {
+                    Toast.makeText(this, "Veuillez remplir tous les champs!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -122,15 +132,19 @@ public class BookActivity extends AppCompatActivity {
             book.setPublishingDate(convertEditTextToDate(publishingDateEditText));
             book.setPrice(Double.parseDouble(priceEditText.getText().toString()));
 
-            // Modification du livre dans la base de données
-            // si sa modification ne crée pas de doublon
-            if (!helper.isBookExistingInBDD(book)) {
-                helper.updateBook(oldBook, book);
-                Toast.makeText(this, "Le livre a été modifié.", Toast.LENGTH_SHORT).show();
-                // Retour à la bibliothèque
-                returnToLibrary();
+            if(allFieldsAreFilled()) {
+                // Modification du livre dans la base de données
+                // si sa modification ne crée pas de doublon
+                if (!helper.isBookExistingInBDD(book)) {
+                    helper.updateBook(oldBook, book);
+                    Toast.makeText(this, "Le livre a été modifié.", Toast.LENGTH_SHORT).show();
+                    // Retour à la bibliothèque
+                    returnToLibrary();
+                } else {
+                    Toast.makeText(this, "Le livre existe déjà!", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(this, "Le livre existe déjà!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Veuillez remplir tous les champs!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -149,5 +163,14 @@ public class BookActivity extends AppCompatActivity {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean allFieldsAreFilled() {
+        return !authorEditText.getText().toString().isEmpty() &&
+                !titleEditText.getText().toString().isEmpty() &&
+                !publisherEditText.getText().toString().isEmpty() &&
+                !descriptionEditText.getText().toString().isEmpty() &&
+                !publishingDateEditText.getText().toString().isEmpty() &&
+                !priceEditText.getText().toString().isEmpty();
     }
 }

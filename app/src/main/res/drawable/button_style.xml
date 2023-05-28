@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" /> <!-- Couleur de fond blanche -->
+    <corners android:radius="10dp" /> <!-- Rayon des coins arrondis -->
+    <padding
+        android:left="@dimen/radius_medium"
+        android:top="@dimen/radius_medium"
+        android:right="@dimen/radius_medium"
+        android:bottom="@dimen/radius_medium" /> <!-- Marge intérieure pour l'ombre -->
+
+    <corners android:radius="@dimen/radius_medium" /> <!-- Rayon des coins arrondis -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/black" /> <!-- Couleur de la bordure -->
+    <item>
+        <shape>
+            <corners android:radius="@dimen/radius_medium" /> <!-- Rayon des coins arrondis pour l'ombre -->
+            <solid android:color="#11000000" /> <!-- Couleur de l'ombre -->
+        </shape>
+    </item>
+</shape>

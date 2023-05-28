@@ -27,18 +27,18 @@
             android:layout_weight="5"
             android:gravity="center"
             android:text="@string/library"
-            android:textSize="20sp" />
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
         <ListView
             android:id="@+id/library_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/margin"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_marginRight="@dimen/margin"
-            android:layout_marginBottom="@dimen/margin"
-            android:listSelector="@color/light_grey"
-            android:layout_weight="1" />
+            android:layout_margin="@dimen/margin"
+            android:layout_weight="1"
+            android:cacheColorHint="@color/light_brown"
+            android:listSelector="@color/brown" />
 
         <LinearLayout
             android:id="@+id/conteneur_boutons"
